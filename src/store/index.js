@@ -1,14 +1,22 @@
 import { createStore } from 'redux';
 
 // Reducer
-const INITTIAL_STATE = ['Fazer café', 'Estudar React Native', 'Entender Redux'];
+const INITTIAL_STATE = [
+  { id: 1, text: 'Fazer café', completed: true },
+  { id: 2, text: 'Estudar React Native', completed: false },
+  { id: 3, text: 'Entender Redux', completed: false },
+];
 
+// Actions
 function reducer(state = INITTIAL_STATE, action) {
-  if (action.type === 'ADD_TODO') {
-    return [...state, action.text];
+  switch (action.type) {
+    case 'ADD_TODO':
+      return [...state, { id: Math.random(), text: action.text, completed: false }];
+    case 'MARK_AS_COMPLETED':
+      return state.map(todo => (todo.id === action.id ? { ...todo, completed: !todo.completed } : todo));
+    default:
+      return state;
   }
-
-  return state;
 }
 
 const store = createStore(reducer);
