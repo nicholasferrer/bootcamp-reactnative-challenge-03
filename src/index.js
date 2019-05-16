@@ -4,12 +4,13 @@ import { Provider } from 'react-redux';
 import '~/config/ReactotronConfig';
 
 import Routes from '~/routes';
+import { setNavigator } from './services/navigation';
 
 import store from './store';
 
 const App = () => (
   <Provider store={store}>
-    <Routes />
+    <Routes ref={setNavigator} />
   </Provider>
 );
 
