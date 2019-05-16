@@ -1,7 +1,14 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
-import { View } from 'react-native';
+import store from '~/store';
 
-const Main = () => <View />;
+import TodoList from './TodoList';
+
+const Main = () => (
+  <Provider store={store}>
+    <TodoList />
+  </Provider>
+);
 
 export default Main;
